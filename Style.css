@@ -1,0 +1,8 @@
+/* Just a white rectangle for displaying the game */
+canvas {
+  width: 800px;
+  height: 500px;
+  border: 1px solid #000000;
+}
+
+/*can add design stuff here later*/
