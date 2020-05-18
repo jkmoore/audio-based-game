@@ -1,3 +1,13 @@
+var canvas = document.getElementById("canvas"),
+  ctx = canvas.getContext("2d"),
+  width = 1000, //these aren't changing the size of the canvas, so I'll have to figure out why
+  height = 800;
+/*obstacle = {
+    x: width + 25,
+    width: 25,
+    height: 25,
+  };*/
+
 function update()
 {
   //Move position of obstacle o y units to the left
