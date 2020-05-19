@@ -1,12 +1,12 @@
 var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d"),
-  width = 1000, //these aren't changing the size of the canvas, so I'll have to figure out why
-  height = 800;
-/*obstacle = {
+  width = 900,
+  height = 500;
+  obstacle = {
     x: width + 25,
     width: 25,
     height: 25,
-  };*/
+  };
 
 function update()
 {
@@ -16,4 +16,6 @@ function update()
   //If obstacle o overlaps with the player, end the game
 }
 
+canvas.width = width;
+canvas.height = height;
 update();
