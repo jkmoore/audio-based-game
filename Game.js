@@ -13,13 +13,11 @@ var canvas = document.getElementById("canvas"),
 
 canvas.width = width;
 canvas.height = height;
-//var img = document.getElementById("tony");
-//ctx.drawImage(img, 10, 10);
 var img = new Image();
 
 img.onload = function()
 {
-  ctx.drawImage(img,15,15);   
+  ctx.drawImage(img,width-200,height-200,180,180);   
 };
 img.src = "./tony.jpg";
 
