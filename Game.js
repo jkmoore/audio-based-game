@@ -35,6 +35,8 @@ obs.onload = function()
   obsx = width;
   obsy = height-PX;
 };
+//TODO randomly pick from an assortment of possible obstacle images, then set properties as appropriate
+//for now, just this picture of tony the tiger
 obs.src = "./tony.jpg";
 
 var playerImg = new Image();
