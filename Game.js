@@ -16,10 +16,10 @@ function update()
 
   ctx.fillStyle = "skyblue";
   ctx.fillRect(PX,0,canvas.width-PX,canvas.height);
-  if (imgx > PX)
+  if (obsx > PX)
   {
-    ctx.drawImage(img,imgx-1,imgy,SIZE,SIZE);
-    imgx = imgx - 1;
+    ctx.drawImage(obs,obsx-1,obsy,SIZE,SIZE);
+    obsx = obsx - 1;
   }
   else
     alert("GAME OVER");
@@ -27,18 +27,22 @@ function update()
 
 canvas.width = width;
 canvas.height = height;
-var img = new Image();
 
-img.onload = function()
+var obs = new Image();
+obs.onload = function()
 {
-  ctx.drawImage(img,width-PX,height-PX,SIZE,SIZE);   
-  imgx = width;
-  imgy = height-PX;
+  ctx.drawImage(obs,width-PX,height-PX,SIZE,SIZE);   
+  obsx = width;
+  obsy = height-PX;
 };
-img.src = "./tony.jpg";
+obs.src = "./tony.jpg";
 
-ctx.fillStyle = "red";
-ctx.fillRect(PX-SIZE,canvas.height-PX,SIZE,SIZE);
+var playerImg = new Image();
+playerImg.onload = function()
+{
+  ctx.drawImage(playerImg,PX-SIZE,canvas.height-PX,SIZE,SIZE);
+}
+playerImg.src = "./player.jpeg";
 
 setInterval(update, 15); //TODO make this speed gradually increase, possibly with another setInterval call and another function
 
