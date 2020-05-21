@@ -13,9 +13,9 @@ var canvas = document.getElementById("canvas"),
 function update()
 {
   //TODO If we receive audio in the adequate frequency/volume range, remove and redraw a random obstacle, reset variables as appropriate
+  //you can use obj.src = "./picName.extension" to change the image for the obstacle, and the other variables should be easy
 
-  //Otherwise we continue to redraw the currently approaching obstacle and check if the player lost the game
-
+  //Otherwise we continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
   ctx.fillStyle = "skyblue";
   ctx.fillRect(PX,0,canvas.width-PX,canvas.height);
   if (obsx > PX)

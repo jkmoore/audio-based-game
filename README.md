@@ -10,11 +10,11 @@ Obstacles have the following data:
   Highest volume allowed to destroy it
   Lowest volume allowed to destroy it
 
-The obstacle might not need to be an object, we can just have variables for the currently approaching obstacle and change
+The obstacle might not need to be a class, we can just have variables for the currently approaching obstacle and change
 them as an obstacle is destroyed and a new one approaches
 
 
-Player does not need to be an object because it's essentially a stationary point on an axis. No properties/function
+Player does not need to be a class because it's essentially a stationary point on an axis. No properties/function
 
 
 The program calls an "update" function on a loop until the game ends. Looks something like this...
