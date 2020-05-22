@@ -28,6 +28,9 @@ Every x seconds, do the following:
     Move position of obstacle o y units to the left
     If obstacle o overlaps with the player, end the game
 
+ (Needed to add the HP system because we check for audio input many many times per second, so correct audio input should
+   only partially weaken an incoming obstacle)
+
 
 I don't know how I ended up with Tony the Tiger and everything but we can easily change that later if needed
 

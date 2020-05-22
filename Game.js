@@ -8,6 +8,7 @@ const TON_MINF = 0, TON_MAXF = 100000, TON_MINV = 0, TON_MAXV = 100000;
 const TIG_MINF = 0, TIG_MAXF = 100000, TIG_MINV = 0, TIG_MAXV = 100000;
 const CHE_MINF = 0, CHE_MAXF = 100000, CHE_MINV = 0, CHE_MAXV = 100000;
 const GAR_MINF = 0, GAR_MAXF = 100000, GAR_MINV = 0, GAR_MAXV = 100000;
+const MAX_HP = 50;
 
 //Canvas-related variables
 var canvas = document.getElementById("canvas"),
@@ -19,19 +20,10 @@ var canvas = document.getElementById("canvas"),
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
-  //TODO If we receive audio in the adequate frequency/volume range, remove and redraw a random obstacle, reset variables as appropriate
-  //you can use obj.src = "./Images/picName.extension" to change the image for the obstacle, and the other variables should be easy
-
-
-  //Issue: if we check for audio input with every update() call, we're checking for audio input many times per second.
-
-       //We don't want to destroy the obstacle and create a new one after just a fraction of a second  of correct audio input
-
-       //We might want to make it so we receive correct audio input X number of times out of Y number of consecutive update calls.
-         //(This would require just one more variable probably)
-         //Maybe you could give obstacles an "HP" variable, and for each time we get correct audio input, you decrease the obstacle HP
-            //by one point. The HP doesn't need to be visible to the player. It's just a way to slow down obstacles being destroyed
-
+  //TODO If we receive audio in the adequate frequency/volume range...
+     //If the obstacle has no HP remaining, remove it and redraw a new random obstacle, and reset obstacle variables as appropriate
+        //(use obj.src = "./Images/picName.extension" to change the image for the obstacle, other variables should be easy)
+     //Otherwise, decrease obstacle HP by 1
 
   //Otherwise we continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
   ctx.fillStyle = "skyblue";
@@ -57,7 +49,8 @@ obs.onload = function()
   ctx.drawImage(obs,width-PX,height-PX,SIZE,SIZE);   
   obsx = width;
   obsy = height-PX;
-  obsMove = 1; //number of units the obstacle moves per update() call; should be higher with each new obstacle
+  obsMove = 1; //number of units the obstacle moves per update() call, should be higher with each new obstacle
+  obsHP = MAX_HP; //hit points remaining, decreases with correct audio input from the player
 };
 obsN = Math.floor(Math.random() * 4); //random integer from 0 to 3 that determines the obstacle
 if (obsN == 0)
