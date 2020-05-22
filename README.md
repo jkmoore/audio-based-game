@@ -25,5 +25,5 @@ Every x seconds, do the following:
     If obstacle o overlaps with the player, end the game
 
 
-
+I don't know how I ended up with Tony the Tiger and everything but we can easily change that later if needed
 

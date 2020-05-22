@@ -2,6 +2,13 @@ const SIZE = 180; //player and obstacle height/width
 const PX = SIZE + 20; //player position, must not draw over this position with obstacle image or canvas background
 const TIME = 15; //milliseconds in between calls of the update() function
 
+//Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
+//TODO figure out appropriate values for all these (something challenging but reasonable for a human voice)
+const TON_MINF = 0, TON_MAXF = 100000, TON_MINV = 0, TON_MAXV = 100000;
+const TIG_MINF = 0, TIG_MAXF = 100000, TIG_MINV = 0, TIG_MAXV = 100000;
+const CHE_MINF = 0, CHE_MAXF = 100000, CHE_MINV = 0, CHE_MAXV = 100000;
+const GAR_MINF = 0, GAR_MAXF = 100000, GAR_MINV = 0, GAR_MAXV = 100000;
+
 //Canvas-related variables
 var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d"),
@@ -41,9 +48,39 @@ obs.onload = function()
   obsy = height-PX;
   obsMove = 1; //number of units the obstacle moves per update() call; should be higher with each new obstacle
 };
-//TODO randomly pick from an assortment of possible obstacle images, then set properties as appropriate (must make additional vars)
-//For now, it's just this picture of tony the tiger and no properties because we can't receive audio input yet
-obs.src = "./tony.jpg";
+obsN = Math.floor(Math.random() * 4); //random integer from 0 to 3 that determines the obstacle
+if (obsN == 0)
+{
+  obs.src = "./tony.jpg";
+  obsMinF = TON_MINF;
+  obsMaxF = TON_MAXF;
+  obsMinV = TON_MINV;
+  obsMaxV = TON_MAXV;
+}
+else if (obsN == 1)
+{
+  obs.src = "./tigger.jpg";
+  obsMinFreq = TIG_MINF;
+  obsMaxFreq = TIG_MAXF;
+  obsMinVol = TIG_MINV;
+  obsMaxVol = TIG_MAXV;
+}
+else if (obsN == 2)
+{
+  obs.src = "./chester.png";
+  obsMinFreq = CHE_MINF;
+  obsMaxFreq = CHE_MAXF;
+  obsMinVol = CHE_MINV;
+  obsMaxVol = CHE_MAXV;
+}
+else
+{
+  obs.src = "./garfield.jpg";
+  obsMinFreq = GAR_MINF;
+  obsMaxFreq = GAR_MAXF;
+  obsMinVol = GAR_MINV;
+  obsMaxVol = GAR_MAXV;
+}
 
 
 //Create the player image, set its properties
