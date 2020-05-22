@@ -51,7 +51,7 @@ obs.onload = function()
 obsN = Math.floor(Math.random() * 4); //random integer from 0 to 3 that determines the obstacle
 if (obsN == 0)
 {
-  obs.src = "./tony.jpg";
+  obs.src = "./Images/tony.jpg";
   obsMinF = TON_MINF;
   obsMaxF = TON_MAXF;
   obsMinV = TON_MINV;
@@ -59,7 +59,7 @@ if (obsN == 0)
 }
 else if (obsN == 1)
 {
-  obs.src = "./tigger.jpg";
+  obs.src = "./Images/tigger.jpg";
   obsMinFreq = TIG_MINF;
   obsMaxFreq = TIG_MAXF;
   obsMinVol = TIG_MINV;
@@ -67,7 +67,7 @@ else if (obsN == 1)
 }
 else if (obsN == 2)
 {
-  obs.src = "./chester.png";
+  obs.src = "./Images/chester.png";
   obsMinFreq = CHE_MINF;
   obsMaxFreq = CHE_MAXF;
   obsMinVol = CHE_MINV;
@@ -75,7 +75,7 @@ else if (obsN == 2)
 }
 else
 {
-  obs.src = "./garfield.jpg";
+  obs.src = "./Images/garfield.jpg";
   obsMinFreq = GAR_MINF;
   obsMaxFreq = GAR_MAXF;
   obsMinVol = GAR_MINV;
@@ -89,7 +89,7 @@ playerImg.onload = function()
 {
   ctx.drawImage(playerImg,PX-SIZE,canvas.height-PX,SIZE,SIZE);
 }
-playerImg.src = "./player.jpeg";
+playerImg.src = "./Images/player.jpeg";
 
 
 //Call the update function on a loop
