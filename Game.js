@@ -23,7 +23,9 @@ var canvas = document.getElementById("canvas"),
 function update()
 {
   //TODO read and check for correct audio input
-  correctAudio = true; //just a placeholder, delete later
+    //(if the audio is good, all you have to do is set correctAudio to true and otherwise make it false, all the rest
+     //of this function is set up properly already)
+  correctAudio = true;
   if (correctAudio)
     obsHP = obsHP - 1;
 
