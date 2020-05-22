@@ -21,7 +21,17 @@ function update()
 {
   //TODO If we receive audio in the adequate frequency/volume range, remove and redraw a random obstacle, reset variables as appropriate
   //you can use obj.src = "./Images/picName.extension" to change the image for the obstacle, and the other variables should be easy
-  
+
+
+  //Issue: if we check for audio input with every update() call, we're checking for audio input many times per second.
+
+       //We don't want to destroy the obstacle and create a new one after just a fraction of a second  of correct audio input
+
+       //We might want to make it so we receive correct audio input X number of times out of Y number of consecutive update calls.
+         //(This would require just one more variable probably)
+         //Maybe you could give obstacles an "HP" variable, and for each time we get correct audio input, you decrease the obstacle HP
+            //by one point. The HP doesn't need to be visible to the player. It's just a way to slow down obstacles being destroyed
+
 
   //Otherwise we continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
   ctx.fillStyle = "skyblue";

@@ -9,6 +9,9 @@ Obstacles have the following data:
   Lowest frequency allowed to destroy it
   Highest volume allowed to destroy it
   Lowest volume allowed to destroy it
+  HP remaining (decreases with the correct audio input from the player)
+  Number associated with which obstacle it is, and image for that obstacle
+  Number of units the obstacle moves per update() call (increases as the game progresses)
 
 The obstacle might not need to be a class, we can just have variables for the currently approaching obstacle and change
 them as an obstacle is destroyed and a new one approaches
@@ -19,8 +22,9 @@ Player does not need to be a class because it's essentially a stationary point o
 
 The program calls an "update" function on a loop until the game ends. Looks something like this...
 Every x seconds, do the following:
-  If we receive input in an adequate frequency/volume range for o, remove o and make a new obstacle
-  Else,
+  If we receive input in an adequate frequency/volume range for o, decrease the HP of the obstacle
+     If the obstacle's HP is depleted, remove o and make a new obstacle
+  Else
     Move position of obstacle o y units to the left
     If obstacle o overlaps with the player, end the game
 
