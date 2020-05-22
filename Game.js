@@ -23,10 +23,10 @@ var canvas = document.getElementById("canvas"),
 function update()
 {
   //TODO read and check for correct audio input
-    //(if the audio is good, all you have to do is set correctAudio to true and otherwise make it false, all the rest
-     //of this function is set up properly already)
-  correctAudio = true;
-  if (correctAudio)
+    //(if the audio is good for the obstacle's freq/vol range, all you have to do is set hit to true and otherwise false.
+    //all the rest of this function is set up properly already)
+  hit = true;
+  if (hit)
     obsHP = obsHP - 1;
 
   //If obstacle HP has reached zero, redraw it as another randomly selected obstacle with values reset and speed increased
