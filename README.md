@@ -23,7 +23,7 @@ Player does not need to be a class because it's essentially a stationary point o
 The program calls an "update" function on a loop until the game ends. Looks something like this...
 Every x seconds, do the following:
   If we receive input in an adequate frequency/volume range for o, decrease the HP of the obstacle
-     If the obstacle's HP is depleted, remove o and make a new obstacle
+     If the obstacle's HP is depleted, remove o and make a new obstacle (actually the same obstacle object, but moved back)
   Else
     Move position of obstacle o y units to the left
     If obstacle o overlaps with the player, end the game
