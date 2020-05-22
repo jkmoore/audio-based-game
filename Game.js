@@ -26,6 +26,9 @@ function update()
     //(if the audio is good for the obstacle's freq/vol range, all you have to do is set hit to true and otherwise false.
     //all the rest of this function is set up properly already)
     //(note that obsN allows us to identify the current object and therefore the freq/vol ranges to consider)
+
+    //Concern: can we get audio input from the user in a tiny fraction of a second so that the update() function can keep repeating?
+      //if not we might have to make some small design changes
   hit = true;
   if (hit)
     obsHP = obsHP - 1;
