@@ -25,6 +25,7 @@ function update()
   //TODO read and check for correct audio input
     //(if the audio is good for the obstacle's freq/vol range, all you have to do is set hit to true and otherwise false.
     //all the rest of this function is set up properly already)
+    //(note that obsN allows us to identify the current object and therefore the freq/vol ranges to consider)
   hit = true;
   if (hit)
     obsHP = obsHP - 1;
