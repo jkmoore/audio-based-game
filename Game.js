@@ -60,26 +60,26 @@ if (obsN == 0)
 else if (obsN == 1)
 {
   obs.src = "./Images/tigger.jpg";
-  obsMinFreq = TIG_MINF;
-  obsMaxFreq = TIG_MAXF;
-  obsMinVol = TIG_MINV;
-  obsMaxVol = TIG_MAXV;
+  obsMinF = TIG_MINF;
+  obsMaxF = TIG_MAXF;
+  obsMinV = TIG_MINV;
+  obsMaxV = TIG_MAXV;
 }
 else if (obsN == 2)
 {
   obs.src = "./Images/chester.png";
-  obsMinFreq = CHE_MINF;
-  obsMaxFreq = CHE_MAXF;
-  obsMinVol = CHE_MINV;
-  obsMaxVol = CHE_MAXV;
+  obsMinF = CHE_MINF;
+  obsMaxF = CHE_MAXF;
+  obsMinV = CHE_MINV;
+  obsMaxV = CHE_MAXV;
 }
 else
 {
   obs.src = "./Images/garfield.jpg";
-  obsMinFreq = GAR_MINF;
-  obsMaxFreq = GAR_MAXF;
-  obsMinVol = GAR_MINV;
-  obsMaxVol = GAR_MAXV;
+  obsMinF = GAR_MINF;
+  obsMaxF = GAR_MAXF;
+  obsMinV = GAR_MINV;
+  obsMaxV = GAR_MAXV;
 }
 
 
