@@ -5,11 +5,10 @@ const SPD_UP = 0.1;
 const SPD_MAX = 12.0;
 
 //Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
-//TODO figure out appropriate values for all these (something challenging but reasonable for a human voice)
-const TON_MINF = 0, TON_MAXF = 100000, TON_MINV = 0, TON_MAXV = 100000;
-const TIG_MINF = 0, TIG_MAXF = 100000, TIG_MINV = 0, TIG_MAXV = 100000;
-const CHE_MINF = 0, CHE_MAXF = 100000, CHE_MINV = 0, CHE_MAXV = 100000;
-const GAR_MINF = 0, GAR_MAXF = 100000, GAR_MINV = 0, GAR_MAXV = 100000;
+const TON_MINF = 40, TON_MAXF = 80, TON_MINV = 0.3, TON_MAXV = 1.0; //low freq, low vol
+const TIG_MINF = 400, TIG_MAXF = 2000, TIG_MINV = 0.3, TIG_MAXV = 1.0; //hi freq, low vol
+const CHE_MINF = 600, CHE_MAXF = 2000, CHE_MINV = 0.9, CHE_MAXV = 1.0; //hi freq, hi vol
+const GAR_MINF = 40, GAR_MAXF = 80, GAR_MINV = 0.9, GAR_MAXV = 1.0; //low freq, hi vol
 const MAX_HP = 50;
 
 //Canvas-related variables
