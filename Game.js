@@ -5,10 +5,10 @@ const SPD_UP = 0.1;
 const SPD_MAX = 12.0;
 
 //Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
-const TON_MINF = 40, TON_MAXF = 80, TON_MINV = 0.3, TON_MAXV = 1.0; //low freq, low vol
-const TIG_MINF = 400, TIG_MAXF = 2000, TIG_MINV = 0.3, TIG_MAXV = 1.0; //hi freq, low vol
+const TON_MINF = 40, TON_MAXF = 80, TON_MINV = 0.3, TON_MAXV = 1.0; //lo freq, lo vol
+const TIG_MINF = 400, TIG_MAXF = 2000, TIG_MINV = 0.3, TIG_MAXV = 1.0; //hi freq, lo vol
 const CHE_MINF = 600, CHE_MAXF = 2000, CHE_MINV = 0.9, CHE_MAXV = 1.0; //hi freq, hi vol
-const GAR_MINF = 40, GAR_MAXF = 80, GAR_MINV = 0.9, GAR_MAXV = 1.0; //low freq, hi vol
+const GAR_MINF = 40, GAR_MAXF = 80, GAR_MINV = 0.9, GAR_MAXV = 1.0; //lo freq, hi vol
 const MAX_HP = 50;
 
 //Canvas-related variables
@@ -16,7 +16,6 @@ var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d"),
   width = 900,
   height = 500;
-
 
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
@@ -59,7 +58,6 @@ function update()
       alert("GAME OVER");
   }
 }
-
 
 //Set the canvas height and width
 canvas.width = width;
@@ -114,7 +112,6 @@ function randObs() //randomly chooses an obstacle, sets all obstacle-unique valu
 }
 randObs();
 
-
 //Create the player image, set its properties
 var playerImg = new Image();
 playerImg.onload = function()
@@ -123,6 +120,8 @@ playerImg.onload = function()
 }
 playerImg.src = "./Images/player.jpeg";
 
+//TODO get permission to use the mic
+//TODO add a start button and let the game start only after that button is clicked 
 
 //Call the update function on a loop
 setInterval(update, TIME);
