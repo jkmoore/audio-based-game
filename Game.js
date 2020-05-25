@@ -16,10 +16,18 @@ var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d"),
   width = 900,
   height = 500;
-
+//score elements 
+var scoreElement = document.getElementById("scoreElement");
+var scoreBoard = document.getElementById("scoreBoard");
+var totalScore = 0;
+function createScoreBoard()
+{
+  scoreElement.innerHTML = totalScore; 
+}
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
+  createScoreBoard();
   //TODO read and check for correct audio input
     //(if the audio is good for the obstacle's freq/vol range, all you have to do is set hit to true and otherwise false.
     //all the rest of this function is set up properly already)
