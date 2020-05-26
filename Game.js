@@ -133,5 +133,8 @@ playerImg.src = "./Images/player.jpeg";
 //TODO add a start button and let the game start only after that button is clicked 
 
 //Call the update function on a loop
-setInterval(update, TIME);
+function begin()
+{
+  setInterval(update, TIME);
+}
 
