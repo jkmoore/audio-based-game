@@ -4,7 +4,7 @@ const SCR_X = 80; //x-coordinate of score display
 const SCR_Y = 200; //y-coordinate of score display
 const TIME = 15; //milliseconds in between calls of the update() function
 const SPD_UP = 0.1;
-const SPD_MAX = 12.0;
+const SPD_MAX = 15.0;
 
 //Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
 const TON_MINF = 40, TON_MAXF = 80, TON_MINV = 0.3, TON_MAXV = 1.0; //lo freq, lo vol
@@ -128,9 +128,6 @@ playerImg.onload = function()
   ctx.drawImage(playerImg,PX-SIZE,canvas.height-PX,SIZE,SIZE);
 }
 playerImg.src = "./Images/player.jpeg";
-
-//TODO get permission to use the mic
-//TODO add a start button and let the game start only after that button is clicked 
 
 //Call the update function on a loop
 function begin()
