@@ -1,5 +1,7 @@
 const SIZE = 180; //player and obstacle height/width
 const PX = SIZE + 20; //player position, must not draw over this position with obstacle image or canvas background
+const SCR_X = 80; //x-coordinate of score display
+const SCR_Y = 200; //y-coordinate of score display
 const TIME = 15; //milliseconds in between calls of the update() function
 const SPD_UP = 0.1;
 const SPD_MAX = 12.0;
@@ -16,18 +18,10 @@ var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d"),
   width = 900,
   height = 500;
-//score elements 
-var scoreElement = document.getElementById("scoreElement");
-var scoreBoard = document.getElementById("scoreBoard");
-var totalScore = 0;
-function createScoreBoard()
-{
-  scoreElement.innerHTML = totalScore; 
-}
+
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
-  createScoreBoard();
   //TODO read and check for correct audio input
     //(if the audio is good for the obstacle's freq/vol range, all you have to do is set hit to true and otherwise false.
     //all the rest of this function is set up properly already)
@@ -42,9 +36,12 @@ function update()
   //If obstacle HP has reached zero, redraw it as another randomly selected obstacle with values reset and speed increased
   if (obsHP <= 0)
   {
-    //TODO add a score display somewhere and increase the score with each obstacle destroyed
+    totalScore = totalScore + 1;
     ctx.fillStyle = "skyblue";
     ctx.fillRect(PX,0,canvas.width-PX,canvas.height);
+    ctx.fillRect(0,120,PX,100);
+    ctx.fillStyle = "black";
+    ctx.fillText(totalScore,SCR_X,SCR_Y);
     obsx = width; //obstacle is moved back to the starting position
     if (obsMove <= SPD_MAX && obsMove + SPD_UP <= SPD_MAX)
       obsMove = obsMove + SPD_UP; //obstacle speed increases if not yet at the max
@@ -70,6 +67,10 @@ function update()
 //Set the canvas height and width
 canvas.width = width;
 canvas.height = height;
+
+totalScore = 0;
+ctx.font = "60px Comic Sans MS";
+ctx.fillText(totalScore,SCR_X,SCR_Y);
 
 //Create the obstacle image, set its properties
 var obs = new Image();
