@@ -33,6 +33,8 @@ function update()
   if (hit)
     obsHP = obsHP - 1;
 
+  ctx.drawImage(playerImg,PX-SIZE,canvas.height-PX,SIZE,SIZE);
+
   //If obstacle HP has reached zero, redraw it as another randomly selected obstacle with values reset and speed increased
   if (obsHP <= 0)
   {
