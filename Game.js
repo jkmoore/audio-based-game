@@ -15,7 +15,7 @@ const MAX_HP = 100;
 
 navigator.mediaDevices.getUserMedia({audio:true});
 var mic, fft;
-var maxVol, index;
+var vol, index;
 function setup()
 {
   mic = new p5.AudioIn();
@@ -25,7 +25,6 @@ function setup()
 }
 function draw() //called repeatedly throughout the program, gets values measuring frequency/volume
 {
-  var vol = mic.getLevel();
   var spectrum = fft.analyze();
 
   //1024 bins in the spectrum
@@ -34,18 +33,18 @@ function draw() //called repeatedly throughout the program, gets values measurin
 
   //Volumes range from 0 to 255; with a regular laptop mic and distance from the user, regular speaking voice is ~130-170
 
-  maxVol = 0;
-  index = 0;
+  vol = 0;   //volume at fundamental frequency
+  index = 0; //bin containing fundamental frequency
   for (i = 0; i<spectrum.length; i++)
   {
-    if (spectrum[i] > maxVol)
+    if (spectrum[i] > vol)
     {
-      maxVol = spectrum[i];
+      vol = spectrum[i];
       index = i;
     }
   }
-  if (maxVol > 150)
-    console.log(index, maxVol); //logs frequency and volume (but not in Hz and not from 0 to 1, will look at these scales later)
+  if (vol > 150)
+    console.log("Index/Vol: ", index, vol);
 }
 
 //Canvas-related variables
@@ -57,7 +56,7 @@ var canvas = document.getElementById("canvas"),
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
-  console.log("Max and index: ", maxVol, index); //test
+  console.log("Max, index, approx. Hz: ", vol, index, index*21.53); //test
   hit = false;
 
   //TODO look at obsN to determine the correct set of constants and then check for a hit
@@ -66,7 +65,7 @@ function update()
      //refer to this later: https://github.com/processing/p5.js/issues/1360
           //clarifies what fundamental frequency is and shows how to find it using p5
 
-  if (maxVol > 100 && index > 30 && index < 50) //just random test values right now, change this later
+  if (vol > 100 && index > 30 && index < 50) //just random test values right now, change this later
     hit = true;
   if (hit)
     obsHP = obsHP - 1;

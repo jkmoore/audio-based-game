@@ -1,36 +1,15 @@
 # CS410-CSM-Project
 
-Just gonna throw design ideas in here for now
+Important links for reference
 
+Explains fft.analyze() from p5
+https://stackoverflow.com/questions/50376861/how-to-get-frequency-value-in-javascript
 
-Obstacles have the following data:
-  Position on a single horizontal axis (just the left edge matters because if it reaches the player the game ends)
-  Highest frequency allowed to destroy it
-  Lowest frequency allowed to destroy it
-  Highest volume allowed to destroy it
-  Lowest volume allowed to destroy it
-  HP remaining (decreases with the correct audio input from the player)
-  Number associated with which obstacle it is, and image for that obstacle
-  Number of units the obstacle moves per update() call (increases as the game progresses)
+Explains a peak-finding function is necessary to get fundamental frequency from fft.analyze()
+https://www.mathworks.com/matlabcentral/answers/429279-detecting-fundamental-frequency-of-a-signal-using-fast-fourier-transform
 
-The obstacle might not need to be a class, we can just have variables for the currently approaching obstacle and change
-them as an obstacle is destroyed and a new one approaches
+Someone's explanation of how they used fft.waveform() instead of analyze to get fundamental frequency
+https://github.com/processing/p5.js/issues/1360
 
-
-Player does not need to be a class because it's essentially a stationary point on an axis. No properties/function
-
-
-The program calls an "update" function on a loop until the game ends. Looks something like this...
-Every x seconds, do the following:
-  If we receive input in an adequate frequency/volume range for o, decrease the HP of the obstacle
-     If the obstacle's HP is depleted, remove o and make a new obstacle (actually the same obstacle object, but moved back)
-  Else
-    Move position of obstacle o y units to the left
-    If obstacle o overlaps with the player, end the game
-
- (Needed to add the HP system because we check for audio input many many times per second, so correct audio input should
-   only partially weaken an incoming obstacle)
-
-
-I don't know how I ended up with Tony the Tiger and everything but we can easily change that later if needed
-
+Explains p5's fft functions
+https://p5js.org/reference/#/p5.FFT
