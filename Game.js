@@ -7,11 +7,11 @@ const SPD_UP = 0.1;
 const SPD_MAX = 12.0;
 
 //Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
-const TON_MINF = 40, TON_MAXF = 80, TON_MINV = 0.3, TON_MAXV = 1.0; //lo freq, lo vol
-const TIG_MINF = 400, TIG_MAXF = 2000, TIG_MINV = 0.3, TIG_MAXV = 1.0; //hi freq, lo vol
-const CHE_MINF = 600, CHE_MAXF = 2000, CHE_MINV = 0.9, CHE_MAXV = 1.0; //hi freq, hi vol
-const GAR_MINF = 40, GAR_MAXF = 80, GAR_MINV = 0.9, GAR_MAXV = 1.0; //lo freq, hi vol
-const MAX_HP = 50;
+const TON_MINF = 2, TON_MAXF = 3, TON_MINV = 130; //lo freq, lo vol
+const TIG_MINF = 15, TIG_MAXF = 25, TIG_MINV = 130; //hi freq, lo vol
+const CHE_MINF = 20, CHE_MAXF = 30, CHE_MINV = 180; //super hi freq, hi vol
+const GAR_MINF = 3, GAR_MAXF = 4, GAR_MINV = 180; //lo freq, hi vol
+const MAX_HP = 100;
 
 navigator.mediaDevices.getUserMedia({audio:true});
 var mic, fft;
@@ -27,6 +27,13 @@ function draw() //called repeatedly throughout the program, gets values measurin
 {
   var vol = mic.getLevel();
   var spectrum = fft.analyze();
+
+  //1024 bins in the spectrum
+  //Each bin is evenly spaced from 0 Hz to 22050 Hz (Nyquist frequency)
+  //Bin 1 is 0-21.5 Hz, Bin 2 is 21.5-43 Hz, etc.
+
+  //Volumes range from 0 to 255; with a regular laptop mic and distance from the user, regular speaking voice is ~130-170
+
   maxVol = 0;
   index = 0;
   for (i = 0; i<spectrum.length; i++)
@@ -50,15 +57,13 @@ var canvas = document.getElementById("canvas"),
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
-  //TODO read and check for correct audio input
-    //(if the audio is good for the obstacle's freq/vol range, all you have to do is set hit to true and otherwise false.
-    //all the rest of this function is set up properly already)
-    //(note that obsN allows us to identify the current object and therefore the freq/vol ranges to consider)
-
-    //Concern: can we get audio input from the user in a tiny fraction of a second so that the update() function can keep repeating?
-      //if not we might have to make some small design changes
-  console.log("Max and index according to update is: ", maxVol, index);
-  hit = true;
+  console.log("Max and index: ", maxVol, index); //test
+  hit = false;
+  //TODO look at obsN to determine the correct set of constants and then check for a hit
+  //TODO issue: we're not getting good readings with human voice (you can compare with a good online tuner)
+    //so we need to figure out if there's a better way to find dominant frequency than just taking the frequency bin with the highest amplitude
+  if (maxVol > 100 && index > 30 && index < 50)
+    hit = true;
   if (hit)
     obsHP = obsHP - 1;
 
@@ -84,7 +89,7 @@ function update()
   {
     //Continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
     ctx.fillStyle = "skyblue";
-    ctx.fillRect(PX,0,canvas.width-PX,canvas.height);
+    ctx.fillRect(PX,0,cvwidth-PX,cvheight);
     if (obsx > PX)
     {
       ctx.drawImage(obs,obsx-obsMove,obsy,SIZE,SIZE);
@@ -123,7 +128,6 @@ function randObs() //randomly chooses an obstacle, sets all obstacle-unique valu
     obsMinF = TON_MINF;
     obsMaxF = TON_MAXF;
     obsMinV = TON_MINV;
-    obsMaxV = TON_MAXV;
   }
   else if (obsN == 1)
   {
@@ -131,7 +135,6 @@ function randObs() //randomly chooses an obstacle, sets all obstacle-unique valu
     obsMinF = TIG_MINF;
     obsMaxF = TIG_MAXF;
     obsMinV = TIG_MINV;
-    obsMaxV = TIG_MAXV;
   }
   else if (obsN == 2)
   {
@@ -139,7 +142,6 @@ function randObs() //randomly chooses an obstacle, sets all obstacle-unique valu
     obsMinF = CHE_MINF;
     obsMaxF = CHE_MAXF;
     obsMinV = CHE_MINV;
-    obsMaxV = CHE_MAXV;
   }
   else
   {
@@ -147,7 +149,6 @@ function randObs() //randomly chooses an obstacle, sets all obstacle-unique valu
     obsMinF = GAR_MINF;
     obsMaxF = GAR_MAXF;
     obsMinV = GAR_MINV;
-    obsMaxV = GAR_MAXV;
   }
 }
 randObs();
