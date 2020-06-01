@@ -61,7 +61,7 @@ function update()
   hit = false;
   //TODO look at obsN to determine the correct set of constants and then check for a hit
   //TODO issue: we're not getting good readings with human voice (you can compare with a good online tuner)
-    //so we need to figure out if there's a better way to find dominant frequency than just taking the frequency bin with the highest amplitude
+    //so we need to figure out if there's a better way to find FUNDAMENTAL frequency than just taking the frequency bin with the highest amplitude
   if (maxVol > 100 && index > 30 && index < 50)
     hit = true;
   if (hit)
