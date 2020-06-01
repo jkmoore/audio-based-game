@@ -59,10 +59,14 @@ function update()
 {
   console.log("Max and index: ", maxVol, index); //test
   hit = false;
+
   //TODO look at obsN to determine the correct set of constants and then check for a hit
   //TODO issue: we're not getting good readings with human voice (you can compare with a good online tuner)
-    //so we need to figure out if there's a better way to find FUNDAMENTAL frequency than just taking the frequency bin with the highest amplitude
-  if (maxVol > 100 && index > 30 && index < 50)
+     //the FUNDAMENTAL frequency (lowest peak) is what we want, not the dominant frequency (highest amplitude)
+     //refer to this later: https://github.com/processing/p5.js/issues/1360
+          //clarifies what fundamental frequency is and shows how to find it using p5
+
+  if (maxVol > 100 && index > 30 && index < 50) //just random test values right now, change this later
     hit = true;
   if (hit)
     obsHP = obsHP - 1;
