@@ -15,6 +15,7 @@ const MAX_HP = 50;
 
 navigator.mediaDevices.getUserMedia({audio:true});
 var mic, fft;
+var maxVol, index;
 function setup()
 {
   mic = new p5.AudioIn();
@@ -23,29 +24,28 @@ function setup()
   fft.setInput(mic);
 }
 function draw() //called repeatedly throughout the program, gets values measuring frequency/volume
-//TODO Will change this so this is the new update function
 {
   var vol = mic.getLevel();
   var spectrum = fft.analyze();
-  var max = 0;
-  var index = 0;
+  maxVol = 0;
+  index = 0;
   for (i = 0; i<spectrum.length; i++)
   {
-    if (spectrum[i] > max)
+    if (spectrum[i] > maxVol)
     {
-      max = spectrum[i];
+      maxVol = spectrum[i];
       index = i;
     }
   }
-  if (max > 150)
-    console.log(index, max); //logs frequency and volume (but not in Hz and not from 0 to 1, will look at these scales later)
+  if (maxVol > 150)
+    console.log(index, maxVol); //logs frequency and volume (but not in Hz and not from 0 to 1, will look at these scales later)
 }
 
 //Canvas-related variables
 var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d"),
-  width = 900,
-  height = 500;
+  cvwidth = 900,
+  cvheight = 500;
 
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
@@ -57,22 +57,23 @@ function update()
 
     //Concern: can we get audio input from the user in a tiny fraction of a second so that the update() function can keep repeating?
       //if not we might have to make some small design changes
+  console.log("Max and index according to update is: ", maxVol, index);
   hit = true;
   if (hit)
     obsHP = obsHP - 1;
 
-  ctx.drawImage(playerImg,PX-SIZE,canvas.height-PX,SIZE,SIZE);
+  ctx.drawImage(playerImg,PX-SIZE,cvheight-PX,SIZE,SIZE);
 
   //If obstacle HP has reached zero, redraw it as another randomly selected obstacle with values reset and speed increased
   if (obsHP <= 0)
   {
     totalScore = totalScore + 1;
     ctx.fillStyle = "skyblue";
-    ctx.fillRect(PX,0,canvas.width-PX,canvas.height);
+    ctx.fillRect(PX,0,cvwidth-PX,cvheight);
     ctx.fillRect(0,120,PX,100);
     ctx.fillStyle = "black";
     ctx.fillText(totalScore,SCR_X,SCR_Y);
-    obsx = width; //obstacle is moved back to the starting position
+    obsx = cvwidth; //obstacle is moved back to the starting position
     if (obsMove <= SPD_MAX && obsMove + SPD_UP <= SPD_MAX)
       obsMove = obsMove + SPD_UP; //obstacle speed increases if not yet at the max
     obsHP = MAX_HP;
@@ -95,8 +96,8 @@ function update()
 }
 
 //Set the canvas height and width
-canvas.width = width;
-canvas.height = height;
+canvas.width = cvwidth;
+canvas.height = cvheight;
 
 totalScore = 0;
 ctx.font = "60px Comic Sans MS";
@@ -107,9 +108,9 @@ var obs = new Image();
 obsMove = 1.0; //number of units the obstacle moves per update() call, increases with each new obstacle
 obs.onload = function() //called each time the obstacle changes (when a new image is loaded for it)
 {
-  ctx.drawImage(obs,width,height-PX,SIZE,SIZE);   
-  obsx = width;
-  obsy = height-PX;
+  ctx.drawImage(obs,cvwidth,cvheight-PX,SIZE,SIZE);   
+  obsx = cvwidth;
+  obsy = cvheight-PX;
   obsHP = MAX_HP; //hit points remaining, decreases with correct audio input from the player
 };
 
