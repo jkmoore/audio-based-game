@@ -13,6 +13,34 @@ const CHE_MINF = 600, CHE_MAXF = 2000, CHE_MINV = 0.9, CHE_MAXV = 1.0; //hi freq
 const GAR_MINF = 40, GAR_MAXF = 80, GAR_MINV = 0.9, GAR_MAXV = 1.0; //lo freq, hi vol
 const MAX_HP = 50;
 
+navigator.mediaDevices.getUserMedia({audio:true});
+var mic, fft;
+function setup()
+{
+  mic = new p5.AudioIn();
+  mic.start();
+  fft = new p5.FFT();
+  fft.setInput(mic);
+}
+function draw() //called repeatedly throughout the program, gets values measuring frequency/volume
+//TODO Will change this so this is the new update function
+{
+  var vol = mic.getLevel();
+  var spectrum = fft.analyze();
+  var max = 0;
+  var index = 0;
+  for (i = 0; i<spectrum.length; i++)
+  {
+    if (spectrum[i] > max)
+    {
+      max = spectrum[i];
+      index = i;
+    }
+  }
+  if (max > 150)
+    console.log(index, max); //logs frequency and volume (but not in Hz and not from 0 to 1, will look at these scales later)
+}
+
 //Canvas-related variables
 var canvas = document.getElementById("canvas"),
   ctx = canvas.getContext("2d"),
