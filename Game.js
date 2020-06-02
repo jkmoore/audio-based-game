@@ -107,11 +107,11 @@ function update()
   }
   else
   {
+    ctx.fillStyle = "skyblue";
+    ctx.fillRect(PX,0,cvwidth-PX,cvheight);
     //Continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
     if (obsx > PX)
     {
-      ctx.fillStyle = "skyblue";
-      ctx.fillRect(PX,0,cvwidth-PX,cvheight);
       ctx.drawImage(obs,obsx-obsMove,obsy,SIZE,SIZE);
       obsx = obsx - obsMove;
     }
@@ -184,6 +184,8 @@ playerImg.src = "./Images/player.jpeg";
 //Call the update function on a loop
 function begin()
 {
+  const button = document.getElementById("button");
+  button.disabled = true;
   setInterval(update, TIME);
 }
 
