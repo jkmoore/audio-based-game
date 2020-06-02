@@ -55,6 +55,8 @@ var canvas = document.getElementById("canvas"),
   cvwidth = 900,
   cvheight = 500;
 
+var guideImg = document.getElementById("guideImg");
+
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
@@ -67,25 +69,44 @@ function update()
   {
     if (vol > TON_MINV && index >= TON_MINF && index <= TON_MAXF)
       hit = true;
+    else if (index <= TON_MINF) //if the frequency is too low
+      guideImg.src = "./Images/GoHigh.jpg";
+    else if (index >= TON_MAXF) //if the frequency is too high
+      guideImg.src = "./Images/GoLow.jpg";
   }
   else if (obsN == 1) //Tigger
   {
     if (vol > TIG_MINV && index >= TIG_MINF && index <= TIG_MAXF)
       hit = true;
+    else if (index <= TIG_MINF) //if the frequency is too low
+      guideImg.src = "./Images/GoHigh.jpg";
+    else if (index >= TIG_MAXF) //if the frequency is too high
+      guideImg.src = "./Images/GoLow.jpg";
   }
   else if (obsN == 2) //Chester
   {
     if (vol > CHE_MINV && index >= CHE_MINF && index <= CHE_MAXF)
       hit = true;
+    else if (index <= CHE_MINF) //if the frequency is too low
+      guideImg.src = "./Images/GoHigh.jpg";
+    else if (index >= CHE_MAXF) //if the frequency is too high
+      guideImg.src = "./Images/GoLow.jpg";
   }
   else //Garfield
   {
     if (vol > GAR_MINV && index >= GAR_MINF && index <= GAR_MAXF)
       hit = true;
+    else if (index <= GAR_MINF) //if the frequency is too low
+      guideImg.src = "./Images/GoHigh.jpg";
+    else if (index >= GAR_MAXF) //if the frequency is too high
+      guideImg.src = "./Images/GoLow.jpg";
   }
 
   if (hit)
+  {
     obsHP = obsHP - 1;
+    guideImg.src = "./Images/Good.jpg";
+  }
 
   ctx.drawImage(playerImg,PX-SIZE,cvheight-PX,SIZE,SIZE);
 
