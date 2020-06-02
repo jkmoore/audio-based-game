@@ -7,10 +7,10 @@ const SPD_UP = 0.1;
 const SPD_MAX = 12.0;
 
 //Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
-const TON_MINF = 2, TON_MAXF = 3, TON_MINV = 130; //lo freq, lo vol
-const TIG_MINF = 15, TIG_MAXF = 25, TIG_MINV = 130; //hi freq, lo vol
-const CHE_MINF = 20, CHE_MAXF = 30, CHE_MINV = 180; //super hi freq, hi vol
-const GAR_MINF = 3, GAR_MAXF = 4, GAR_MINV = 180; //lo freq, hi vol
+const TON_MINF = 2, TON_MAXF = 4, TON_MINV = 150; //lo freq, lo vol
+const TIG_MINF = 10, TIG_MAXF = 100, TIG_MINV = 150; //hi freq, lo vol
+const CHE_MINF = 17, CHE_MAXF = 100, CHE_MINV = 200; //super hi freq, hi vol
+const GAR_MINF = 5, GAR_MAXF = 8, GAR_MINV = 200; //lo freq, hi vol
 const MAX_HP = 100;
 
 navigator.mediaDevices.getUserMedia({audio:true});
@@ -33,8 +33,8 @@ function draw() //called repeatedly throughout the program, gets values measurin
 
   //Volumes range from 0 to 255; with a regular laptop mic and distance from the user, regular speaking voice is ~130-170
 
-  vol = 0;   //volume at fundamental frequency
-  index = 0; //bin containing fundamental frequency
+  vol = 0;   //volume at dominant frequency
+  index = 0; //bin containing dominant frequency (issue: this is not always the same as actual pitch)
   for (i = 0; i<spectrum.length; i++)
   {
     if (spectrum[i] > vol)
@@ -43,8 +43,10 @@ function draw() //called repeatedly throughout the program, gets values measurin
       index = i;
     }
   }
-  if (vol > 150)
-    console.log("Index/Vol: ", index, vol);
+
+  //Test (run next to a real tuner and compare frequencies)
+  //if (vol > 150)
+  //  console.log("Index/Index Hz Low/Index Hz High/Vol: ", index, index*21.53, index*21.53+21.53, vol);
 }
 
 //Canvas-related variables
@@ -56,17 +58,32 @@ var canvas = document.getElementById("canvas"),
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
-  console.log("Max, index, approx. Hz: ", vol, index, index*21.53); //test
+  //Test
+  console.log("Vol/Index/Hz Low/Hz Hi: ", vol, index, index*21.53, index*21.53+21.53);
+
+  //Determine whether the obstacle will take damage based on its target frequency/volume values
   hit = false;
+  if (obsN == 0) //Tony
+  {
+    if (vol > TON_MINV && index >= TON_MINF && index <= TON_MAXF)
+      hit = true;
+  }
+  else if (obsN == 1) //Tigger
+  {
+    if (vol > TIG_MINV && index >= TIG_MINF && index <= TIG_MAXF)
+      hit = true;
+  }
+  else if (obsN == 2) //Chester
+  {
+    if (vol > CHE_MINV && index >= CHE_MINF && index <= CHE_MAXF)
+      hit = true;
+  }
+  else //Garfield
+  {
+    if (vol > GAR_MINV && index >= GAR_MINF && index <= GAR_MAXF)
+      hit = true;
+  }
 
-  //TODO look at obsN to determine the correct set of constants and then check for a hit
-  //TODO issue: we're not getting good readings with human voice (you can compare with a good online tuner)
-     //the FUNDAMENTAL frequency (lowest peak) is what we want, not the dominant frequency (highest amplitude)
-     //refer to this later: https://github.com/processing/p5.js/issues/1360
-          //clarifies what fundamental frequency is and shows how to find it using p5
-
-  if (vol > 100 && index > 30 && index < 50) //just random test values right now, change this later
-    hit = true;
   if (hit)
     obsHP = obsHP - 1;
 
