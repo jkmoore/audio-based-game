@@ -7,10 +7,10 @@ const SPD_UP = 0.1;
 const SPD_MAX = 12.0;
 
 //Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
-const TON_MINF = 2, TON_MAXF = 4, TON_MINV = 150; //lo freq, lo vol
-const TIG_MINF = 10, TIG_MAXF = 100, TIG_MINV = 150; //hi freq, lo vol
+const TON_MINF = 2, TON_MAXF = 6, TON_MINV = 150; //lo freq, lo vol
+const TIG_MINF = 12, TIG_MAXF = 100, TIG_MINV = 150; //hi freq, lo vol
 const CHE_MINF = 17, CHE_MAXF = 100, CHE_MINV = 200; //super hi freq, hi vol
-const GAR_MINF = 5, GAR_MAXF = 8, GAR_MINV = 200; //lo freq, hi vol
+const GAR_MINF = 7, GAR_MAXF = 11, GAR_MINV = 200; //lo freq, hi vol
 const MAX_HP = 100;
 
 navigator.mediaDevices.getUserMedia({audio:true});
@@ -139,7 +139,7 @@ function update()
     else
     {
       alert("GAME OVER");
-      obsx = PX; //prevents alert from appearing again after being closed before the page is reloaded
+      obsx = PX+1; //prevents alert from appearing again after being closed before the page is reloaded
       location.reload();
     }
   }
