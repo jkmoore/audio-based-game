@@ -116,7 +116,11 @@ function update()
       obsx = obsx - obsMove;
     }
     else
+    {
       alert("GAME OVER");
+      obsx = PX; //prevents alert from appearing again after being closed before the page is reloaded
+      location.reload();
+    }
   }
 }
 
