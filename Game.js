@@ -15,7 +15,7 @@ const MAX_HP = 100;
 
 navigator.mediaDevices.getUserMedia({audio:true});
 var mic, fft;
-var vol, index;
+var vol, index; //measures vol/freq of user input
 function setup()
 {
   mic = new p5.AudioIn();
@@ -108,10 +108,10 @@ function update()
   else
   {
     //Continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
-    ctx.fillStyle = "skyblue";
-    ctx.fillRect(PX,0,cvwidth-PX,cvheight);
     if (obsx > PX)
     {
+      ctx.fillStyle = "skyblue";
+      ctx.fillRect(PX,0,cvwidth-PX,cvheight);
       ctx.drawImage(obs,obsx-obsMove,obsy,SIZE,SIZE);
       obsx = obsx - obsMove;
     }
