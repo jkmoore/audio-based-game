@@ -56,91 +56,94 @@ var canvas = document.getElementById("canvas"),
   cvheight = 500;
 
 var guideImg = document.getElementById("guideImg");
+var stopUpdate = false; //set to true when game ends, update function then does nothing
 
 //Called repeatedly to update visuals and check for input or the game ending
 function update()
 {
-  //Test
-  console.log("Vol/Index/Hz Low/Hz Hi: ", vol, index, index*21.53, index*21.53+21.53);
+  if (stopUpdate == false)
+  {
+    //console.log("Vol/Index/Hz Low/Hz Hi: ", vol, index, index*21.53, index*21.53+21.53); //test
 
-  //Determine whether the obstacle will take damage based on its target frequency/volume values
-  hit = false;
-  if (obsN == 0) //Tony
-  {
-    if (vol > TON_MINV && index >= TON_MINF && index <= TON_MAXF)
-      hit = true;
-    else if (index <= TON_MINF) //if the frequency is too low
-      guideImg.src = "./Images/GoHigh.jpg";
-    else if (index >= TON_MAXF) //if the frequency is too high
-      guideImg.src = "./Images/GoLow.jpg";
-  }
-  else if (obsN == 1) //Tigger
-  {
-    if (vol > TIG_MINV && index >= TIG_MINF && index <= TIG_MAXF)
-      hit = true;
-    else if (index <= TIG_MINF) //if the frequency is too low
-      guideImg.src = "./Images/GoHigh.jpg";
-    else if (index >= TIG_MAXF) //if the frequency is too high
-      guideImg.src = "./Images/GoLow.jpg";
-  }
-  else if (obsN == 2) //Chester
-  {
-    if (vol > CHE_MINV && index >= CHE_MINF && index <= CHE_MAXF)
-      hit = true;
-    else if (index <= CHE_MINF) //if the frequency is too low
-      guideImg.src = "./Images/GoHigh.jpg";
-    else if (index >= CHE_MAXF) //if the frequency is too high
-      guideImg.src = "./Images/GoLow.jpg";
-  }
-  else //Garfield
-  {
-    if (vol > GAR_MINV && index >= GAR_MINF && index <= GAR_MAXF)
-      hit = true;
-    else if (index <= GAR_MINF) //if the frequency is too low
-      guideImg.src = "./Images/GoHigh.jpg";
-    else if (index >= GAR_MAXF) //if the frequency is too high
-      guideImg.src = "./Images/GoLow.jpg";
-  }
-
-  if (hit)
-  {
-    obsHP = obsHP - 1;
-    guideImg.src = "./Images/Good.jpg";
-  }
-
-  ctx.drawImage(playerImg,PX-SIZE,cvheight-PX,SIZE,SIZE);
-
-  //If obstacle HP has reached zero, redraw it as another randomly selected obstacle with values reset and speed increased
-  if (obsHP <= 0)
-  {
-    totalScore = totalScore + 1;
-    ctx.fillStyle = "skyblue";
-    ctx.fillRect(PX,0,cvwidth-PX,cvheight);
-    ctx.fillRect(0,120,PX,100);
-    ctx.fillStyle = "black";
-    ctx.fillText(totalScore,SCR_X,SCR_Y);
-    obsx = cvwidth; //obstacle is moved back to the starting position
-    if (obsMove <= SPD_MAX && obsMove + SPD_UP <= SPD_MAX)
-      obsMove = obsMove + SPD_UP; //obstacle speed increases if not yet at the max
-    obsHP = MAX_HP;
-    randObs(); 
-    ctx.drawImage(obs,obsx,obsy,SIZE,SIZE);
-  }
-  else
-  {
-    ctx.fillStyle = "skyblue";
-    ctx.fillRect(PX,0,cvwidth-PX,cvheight);
-    //Continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
-    if (obsx > PX)
+    //Determine whether the obstacle will take damage based on its target frequency/volume values
+    hit = false;
+    if (obsN == 0) //Tony
     {
-      ctx.drawImage(obs,obsx-obsMove,obsy,SIZE,SIZE);
-      obsx = obsx - obsMove;
+      if (vol > TON_MINV && index >= TON_MINF && index <= TON_MAXF)
+        hit = true;
+      else if (index <= TON_MINF) //if the frequency is too low
+        guideImg.src = "./Images/GoHigh.jpg";
+      else if (index >= TON_MAXF) //if the frequency is too high
+        guideImg.src = "./Images/GoLow.jpg";
+    }
+    else if (obsN == 1) //Tigger
+    {
+      if (vol > TIG_MINV && index >= TIG_MINF && index <= TIG_MAXF)
+        hit = true;
+      else if (index <= TIG_MINF) //if the frequency is too low
+        guideImg.src = "./Images/GoHigh.jpg";
+      else if (index >= TIG_MAXF) //if the frequency is too high
+        guideImg.src = "./Images/GoLow.jpg";
+    }
+    else if (obsN == 2) //Chester
+    {
+      if (vol > CHE_MINV && index >= CHE_MINF && index <= CHE_MAXF)
+        hit = true;
+      else if (index <= CHE_MINF) //if the frequency is too low
+        guideImg.src = "./Images/GoHigh.jpg";
+      else if (index >= CHE_MAXF) //if the frequency is too high
+        guideImg.src = "./Images/GoLow.jpg";
+    }
+    else //Garfield
+    {
+      if (vol > GAR_MINV && index >= GAR_MINF && index <= GAR_MAXF)
+        hit = true;
+      else if (index <= GAR_MINF) //if the frequency is too low
+        guideImg.src = "./Images/GoHigh.jpg";
+      else if (index >= GAR_MAXF) //if the frequency is too high
+        guideImg.src = "./Images/GoLow.jpg";
+    }
+
+    if (hit)
+    {
+      obsHP = obsHP - 1;
+      guideImg.src = "./Images/Good.jpg";
+    }
+
+    ctx.drawImage(playerImg,PX-SIZE,cvheight-PX,SIZE,SIZE);
+
+    //If obstacle HP has reached zero, redraw it as another randomly selected obstacle with values reset and speed increased
+    if (obsHP <= 0)
+    {
+      totalScore = totalScore + 1;
+      ctx.fillStyle = "skyblue";
+      ctx.fillRect(PX,0,cvwidth-PX,cvheight);
+      ctx.fillRect(0,120,PX,100);
+      ctx.fillStyle = "black";
+      ctx.fillText(totalScore,SCR_X,SCR_Y);
+      obsx = cvwidth; //obstacle is moved back to the starting position
+      if (obsMove <= SPD_MAX && obsMove + SPD_UP <= SPD_MAX)
+        obsMove = obsMove + SPD_UP; //obstacle speed increases if not yet at the max
+      obsHP = MAX_HP;
+      randObs(); 
+      ctx.drawImage(obs,obsx,obsy,SIZE,SIZE);
     }
     else
     {
-      alert("GAME OVER");
-      obsx = PX+1; //prevents alert from appearing again after being closed before the page is reloaded
-      location.reload();
+      ctx.fillStyle = "skyblue";
+      ctx.fillRect(PX,0,cvwidth-PX,cvheight);
+      //Continue to redraw the currently approaching obstacle and end the game if the obstacle has reached the player 
+      if (obsx > PX)
+      {
+        ctx.drawImage(obs,obsx-obsMove,obsy,SIZE,SIZE);
+        obsx = obsx - obsMove;
+      }
+      else
+      {
+        alert("GAME OVER");
+        stopUpdate = true;
+        location.reload();
+      }
     }
   }
 }
