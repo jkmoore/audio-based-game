@@ -33,3 +33,9 @@ significant effect on gameplay from our playtesting experience (a high voice wil
 that are destroyed by high-pitched sounds, and a low voice will still clear enemies destroyed by low-
 pitched sounds), so while it would be a fine improvement to implement a pitch detection algorithm and
 ensure frequency computations are perfect, we are still satisfied with this project as is.
+
+We used the p5 complete library (p5.js and p5.sound.js) to obtain and process audio input in JavaScript.
+Functions from p5 are responsible for starting audio recording, running a fast Fourier Transform on
+incoming audio, and creating a frequency spectrum from the transform in this program. The setup() and
+draw() functions, also part of p5, help the flow of the program by preparing audio recording at the
+very beginning and continually checking for audio input while other code is running.

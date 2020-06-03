@@ -16,6 +16,8 @@ const MAX_HP = 100;
 navigator.mediaDevices.getUserMedia({audio:true});
 var mic, fft;
 var vol, index; //measures vol/freq of user input
+
+//setup() and draw() as well as all functions called inside are from the p5 complete library (p5.js, p5.sound.js)
 function setup()
 {
   mic = new p5.AudioIn();
