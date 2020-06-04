@@ -7,10 +7,10 @@ const SPD_UP = 0.1;
 const SPD_MAX = 12.0;
 
 //Obstacle properties (min/max frequencies and volumes to destroy each unique obstacle)
-const TON_MINF = 2, TON_MAXF = 6, TON_MINV = 180; //lo freq, lo vol
-const TIG_MINF = 12, TIG_MAXF = 100, TIG_MINV = 180; //hi freq, lo vol
+const TON_MINF = 2, TON_MAXF = 7, TON_MINV = 180; //lo freq, lo vol
+const TIG_MINF = 13, TIG_MAXF = 100, TIG_MINV = 180; //hi freq, lo vol
 const CHE_MINF = 17, CHE_MAXF = 100, CHE_MINV = 220; //super hi freq, hi vol
-const GAR_MINF = 7, GAR_MAXF = 11, GAR_MINV = 220; //lo freq, hi vol
+const GAR_MINF = 8, GAR_MAXF = 12, GAR_MINV = 220; //lo freq, hi vol
 const MAX_HP = 100;
 
 navigator.mediaDevices.getUserMedia({audio:true});
