@@ -1,9 +1,10 @@
 # CS410-CSM-Project
 
-Kai Moore jkm9@pdx.edu
-Ashlyn Okamoto okamoto@pdx.edu
+# Yelling Game
+## Kai Moore jkm9@pdx.edu
+## Ashlyn Okamoto okamoto@pdx.edu
 
-Yelling Game
+### Introduction
 
 A simple 2D game that requires use of the player's voice for an engaging and entertaining experience.
 The player, on the left side of the screen, is approached by enemies, each with a target frequency
@@ -34,6 +35,7 @@ draw() functions, also part of p5, help the flow of the program by preparing aud
 very beginning and continually checking for audio input while other code is running.
 
 
+### How to Play
 To run the game, download the zip file for this repository and unzip. Then, identify your browser...
 * If using Safari, allow Safari to use the microphone. If still unsuccessful, ensure "Allow Media Capture on Insecure Sites" is checked under Develop > WebRTC, then open "Game.html" in Safari.  
 * If using Google Chrome, download and launch the ["Web Server for Chrome"](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en) extension.
