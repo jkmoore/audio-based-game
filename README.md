@@ -12,13 +12,6 @@ the game ends when the player fails to destroy an enemy before it reaches them. 
 right side of the screen shows whether the player needs to raise, lower, or keep steady the pitch of
 their voice to destroy the incoming enemy.
 
-To run the game, first gather all HTML, CSS, and JavaScript files as well as the "Images" folder in
-one directory. If using Safari, ensure "Allow Media Capture on Insecure Sites" is checked under
-Develop > WebRTC, then open "Game.html" in Safari, allow microphone access, and click the "Start the
-game" button to begin. If using Google Chrome, download and launch the "Web Server for Chrome"
-extension, choose the directory containing all the game files, open the provided link, click on
-"Game.html", and then allow microphone access and click the button to begin.
-
 We have tested the game with console messages in the draw() and update() functions, which are called
 rapidly and continually throughout the game. These console messages, commented out in "Game.js",
 display various metrics of incoming audio: volume, position in the frequency spectrum, and estimated
@@ -39,3 +32,16 @@ Functions from p5 are responsible for starting audio recording, running a fast F
 incoming audio, and creating a frequency spectrum from the transform in this program. The setup() and
 draw() functions, also part of p5, help the flow of the program by preparing audio recording at the
 very beginning and continually checking for audio input while other code is running.
+
+
+To run the game, download the zip file for this repository and unzip. Then, identify your browser...
+* If using Safari, allow Safari to use the microphone. If still unsuccessful, ensure "Allow Media Capture on Insecure Sites" is checked under Develop > WebRTC, then open "Game.html" in Safari.  
+* If using Google Chrome, download and launch the ["Web Server for Chrome"](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en)
+extension.
+--* After launching the app, choose the directory containing all files included in the unzipped repository.
+--* Click the link under "Web Server URL(s)
+
+Open "Game.html", and then allow microphone access. 
+Finally, click the "Start the game" button to begin. Depending on your machine, you may need to allow microphone access after each game ends.
+
+Good luck and happy yelling!
