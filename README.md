@@ -36,8 +36,7 @@ very beginning and continually checking for audio input while other code is runn
 
 To run the game, download the zip file for this repository and unzip. Then, identify your browser...
 * If using Safari, allow Safari to use the microphone. If still unsuccessful, ensure "Allow Media Capture on Insecure Sites" is checked under Develop > WebRTC, then open "Game.html" in Safari.  
-* If using Google Chrome, download and launch the <a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en" target="_blank">Web Server for Chrome</a>
-extension.
+* If using Google Chrome, download and launch the ["Web Server for Chrome"](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en){:target="_blank"}
 
    * After launching the app, choose the directory containing all files included in the unzipped repository.
    * Click the link under "Web Server URL(s)"
