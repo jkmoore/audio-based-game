@@ -39,8 +39,8 @@ To run the game, download the zip file for this repository and unzip. Then, iden
 * If using Google Chrome, download and launch the ["Web Server for Chrome"](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb/related?hl=en)
 extension.
 
-...*After launching the app, choose the directory containing all files included in the unzipped repository.
-...*Click the link under "Web Server URL(s)
+   * After launching the app, choose the directory containing all files included in the unzipped repository.
+   * Click the link under "Web Server URL(s)
 
 Open "Game.html", and then allow microphone access. 
 Finally, click the "Start the game" button to begin. Depending on your machine, you may need to allow microphone access after each game ends.
