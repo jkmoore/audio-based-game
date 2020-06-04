@@ -44,4 +44,6 @@ To run the game, download the zip file for this repository and unzip. Then, iden
    
 Finally, click the "Start the game" button to begin. Depending on your machine, you may need to allow microphone access after each game ends.
 
+Again, the right side visuals will tell you whether you need to make your voice a higher pitch or a lower pitch in order to destroy the enemy. The "oh yeah," indicates that you are at the right pitch!
+
 Good luck and happy yelling!
