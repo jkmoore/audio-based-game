@@ -1,6 +1,4 @@
-# CS410-CSM-Project
-
-# Yelling Game
+# CS410-CSM-Project: Yelling Game
 ### Kai Moore jkm9@pdx.edu Ashlyn Okamoto okamoto@pdx.edu
 
 #### Introduction
