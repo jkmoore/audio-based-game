@@ -47,8 +47,8 @@ function draw() //called repeatedly throughout the program, gets values measurin
   }
 
   //Test (run next to a real tuner and compare frequencies)
-  //if (vol > 150)
-  //  console.log("Index/Index Hz Low/Index Hz High/Vol: ", index, index*21.53, index*21.53+21.53, vol);
+  if (vol > 150)
+    console.log("Index/Index Hz Low/Index Hz High/Vol: ", index, index*21.53, index*21.53+21.53, vol);
 }
 
 //Canvas-related variables
