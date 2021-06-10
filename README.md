@@ -1,4 +1,4 @@
-# CS410-CSM-Project: Yelling Game
+# CS410-CSM-Project: Audio-Based Game
 ### Kai Moore, Ashlyn Okamoto
 
 #### Introduction
