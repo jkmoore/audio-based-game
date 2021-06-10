@@ -1,6 +1,8 @@
 # CS410-CSM-Project: Audio-Based Game
 ### Kai Moore, Ashlyn Okamoto
 
+![Gameplay Screenshot](Images/GameplayScreenshot.png?raw=true)
+
 #### Introduction
 
 A 2D side-scrolling game that requires use of the player's voice for an engaging and entertaining experience.
