@@ -1,5 +1,4 @@
 # CS410-CSM-Project: Audio-Based Game
-### Kai Moore, Ashlyn Okamoto
 
 ![Gameplay Screenshot](Images/GameplayScreenshot.png?raw=true)
 
